@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import Divider from '@mui/material/Divider';
 import { getOneDonation, getPayments, updateDon, refund } from './serverPage';
@@ -41,7 +41,7 @@ import {
     SelectValue,
 } from "@/components/ui/select"
 
-export default function Home() {
+function OneDonation() {
     const router = useSearchParams()
     const uuid = router.get("id")
     const [data, setData] = useState<any>(null)
@@ -475,5 +475,13 @@ export default function Home() {
                 </>
             )}
         </>
+    )
+}
+
+export default function Home(){
+    return(
+        <Suspense>
+            <OneDonation />
+        </Suspense>
     )
 }
